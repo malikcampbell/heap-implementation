@@ -52,22 +52,14 @@ public class MaxHeap
    public void addGrade(Student elt, double gradePointsPerUnit, int units)
    {
       int index = 0;
-      for(int i = 0; i < students.size(); i++) {
+      while(students.get(index) != elt) {
     	 
-    	  if(students.get(i).compareTo(elt) == 0) {
-    		  index = i;
-    	  }
+    	  index++;
       }
       
-      students.get(index).addGrade(gradePointsPerUnit, units);
-    	  
-      if(left(index) < students.size() && students.get(index).compareTo(students.get(left(index))) < 0 ) {
-    	  maxHeapify(index);
-      }
-      if(students.get(index).compareTo(students.get(parent(index))) > 0) {
-    	  moveUp(index);
-      }
-    	  
+      elt.addGrade(gradePointsPerUnit, units);
+      maxHeapify(index);
+      moveUp(index);  
    }
    
    
